@@ -1,0 +1,66 @@
+.hub-category {
+  margin-bottom: 36px;
+}
+
+.hub-category-title {
+  margin: 0 0 14px;
+  font-size: .82rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.hub-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: inherit;
+  transition: .18s ease;
+}
+
+.hub-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+}
+
+.hub-card-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  color: #fff;
+  background: linear-gradient(145deg, var(--accent), #ff8a47);
+}
+
+.hub-card-icon i { width: 20px; height: 20px; }
+
+.hub-card h2 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: -.03em;
+}
+
+.hub-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .84rem;
+  line-height: 1.45;
+}
+
+.hub-categories {
+  padding-bottom: 48px;
+}
