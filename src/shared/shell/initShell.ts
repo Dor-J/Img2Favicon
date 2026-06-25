@@ -1,6 +1,7 @@
 import { createIcons } from 'lucide';
 import { CATEGORY_LABELS } from '../seo/categories';
 import { getToolsByCategory } from '../seo/categories';
+import { initIntentPrefetch } from './prefetchNav';
 import { resolveToolHref } from './toolsNav';
 
 export interface ShellOptions {
@@ -77,6 +78,8 @@ export function initShell(options: ShellOptions = {}): void {
   if (options.showReset && options.onReset) {
     document.querySelector('#resetAll')?.addEventListener('click', options.onReset);
   }
+
+  initIntentPrefetch();
 }
 
 function setupToolsDropdown(): void {

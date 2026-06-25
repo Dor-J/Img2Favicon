@@ -434,3 +434,19 @@
     .tool-preview-wrap { position: relative; display: inline-block; max-width: 100%; }
     .crop-overlay { position: absolute; border: 2px solid var(--accent); box-shadow: 0 0 0 9999px rgba(0,0,0,.45); cursor: move; }
     .effect-region { position: absolute; border: 2px dashed var(--accent); background: rgba(255,90,31,.12); pointer-events: none; }
+
+    @view-transition {
+      navigation: auto;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 180ms;
+      animation-timing-function: ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      @view-transition {
+        navigation: none;
+      }
+    }
