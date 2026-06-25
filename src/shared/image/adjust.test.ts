@@ -1,5 +1,13 @@
 import { describe, expect, it, vi } from 'vitest';
-import { applyAdjustments } from './adjust';
+import { applyAdjustments, buildAdjustFilter } from './adjust';
+
+describe('buildAdjustFilter', () => {
+  it('builds css filter from adjustment values', () => {
+    expect(buildAdjustFilter({ brightness: 10, contrast: 0, saturation: 0 })).toBe(
+      'brightness(110%) contrast(100%) saturate(100%)',
+    );
+  });
+});
 
 describe('applyAdjustments', () => {
   it('returns a canvas with same dimensions', () => {
