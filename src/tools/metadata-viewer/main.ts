@@ -2,6 +2,7 @@ import exifr from 'exifr';
 import { initShell } from '../../shared/shell/initShell';
 import { bindFileDrop, resetDropzone, setDropzoneLoaded } from '../../shared/ui/fileDrop';
 import { copyText } from '../../shared/image/encode';
+import { formatMetadataJson, metadataStatusMessage } from '../../shared/image/metadataFormat';
 import { $ } from '../../shared/tools/toolHelpers';
 import { showToast } from '../../shared/ui/toast';
 import '../../styles/shared.css';
@@ -29,10 +30,8 @@ bindFileDrop({
 
     try {
       const metadata = await exifr.parse(file, { translateKeys: true });
-      outputText.value = JSON.stringify(metadata ?? {}, null, 2);
-      metaEl.textContent = metadata
-        ? `Parsed metadata from ${file.name}`
-        : `No embedded metadata found in ${file.name}`;
+      outputText.value = formatMetadataJson(metadata);
+      metaEl.textContent = metadataStatusMessage(file.name, metadata);
     } catch {
       outputText.value = '{}';
       metaEl.textContent = 'Could not parse metadata from this file.';

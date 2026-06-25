@@ -1,6 +1,11 @@
 import QRCode from 'qrcode';
 import { initShell } from '../../shared/shell/initShell';
 import { downloadBlob } from '../../shared/image/encode';
+import {
+  defaultQrPreviewText,
+  normalizeQrSize,
+  qrDownloadFilename,
+} from '../../shared/image/qrCode';
 import { $ } from '../../shared/tools/toolHelpers';
 import { showToast } from '../../shared/ui/toast';
 import '../../styles/shared.css';
@@ -12,8 +17,8 @@ const formatSelect = $<HTMLSelectElement>('#qrFormat');
 const previewCanvas = $<HTMLCanvasElement>('#previewCanvas');
 
 async function render(): Promise<void> {
-  const text = textInput.value.trim() || 'https://example.com';
-  const size = Math.max(128, Number(sizeInput.value) || 256);
+  const text = textInput.value.trim() || defaultQrPreviewText();
+  const size = normalizeQrSize(Number(sizeInput.value));
   previewCanvas.width = size;
   previewCanvas.height = size;
   await QRCode.toCanvas(previewCanvas, text, {
@@ -30,8 +35,8 @@ async function download(): Promise<void> {
     return;
   }
 
-  const size = Math.max(128, Number(sizeInput.value) || 256);
-  const format = formatSelect.value;
+  const size = normalizeQrSize(Number(sizeInput.value));
+  const format = formatSelect.value as 'png' | 'svg';
 
   if (format === 'svg') {
     const svg = await QRCode.toString(text, {
@@ -39,7 +44,7 @@ async function download(): Promise<void> {
       errorCorrectionLevel: ecSelect.value as 'L' | 'M' | 'Q' | 'H',
       width: size,
     });
-    await downloadBlob(new Blob([svg], { type: 'image/svg+xml' }), 'qrcode.svg');
+    await downloadBlob(new Blob([svg], { type: 'image/svg+xml' }), qrDownloadFilename('svg'));
   } else {
     await render();
     const blob = await new Promise<Blob | null>((resolve) => {
@@ -49,7 +54,7 @@ async function download(): Promise<void> {
       showToast('Failed to generate QR code.');
       return;
     }
-    await downloadBlob(blob, 'qrcode.png');
+    await downloadBlob(blob, qrDownloadFilename('png'));
   }
   showToast('QR code downloaded.');
 }

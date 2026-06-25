@@ -6,6 +6,7 @@ import {
   clearLoadedImage,
 } from '../../shared/tools/toolBase';
 import { fitImageToCanvas, type FitMode } from '../../shared/image/fitModes';
+import { resolveOgPreset } from '../../shared/web/ogPresets';
 import { $, formatInputMeta, updateMeta } from '../../shared/tools/toolHelpers';
 import { buildFilename, downloadBlob, encodeCanvas } from '../../shared/image/encode';
 import { imageToCanvas, type LoadedImage } from '../../shared/image/loadImage';
@@ -13,13 +14,6 @@ import { scaleToFitPreview } from '../../shared/image/dimensions';
 import '../../styles/shared.css';
 
 const PREVIEW_MAX = 560;
-const PRESETS: Record<string, { w: number; h: number }> = {
-  '1200x630': { w: 1200, h: 630 },
-  '1200x600': { w: 1200, h: 600 },
-  '1200x1200': { w: 1200, h: 1200 },
-  '1500x500': { w: 1500, h: 500 },
-};
-
 let loaded: LoadedImage | null = null;
 let sourceCanvas: HTMLCanvasElement | null = null;
 let outputCanvas: HTMLCanvasElement | null = null;
@@ -32,7 +26,7 @@ const bgColorInput = $<HTMLInputElement>('#bgColor');
 
 function renderPreview(): void {
   if (!sourceCanvas || !loaded) return;
-  const { w, h } = PRESETS[preset] ?? PRESETS['1200x630']!;
+  const { w, h } = resolveOgPreset(preset);
   outputCanvas = fitImageToCanvas(
     sourceCanvas,
     w,

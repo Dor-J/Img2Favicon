@@ -1,5 +1,6 @@
 import { initShell } from '../../shared/shell/initShell';
 import { downloadBlob } from '../../shared/image/encode';
+import { placeholderFilename, renderPlaceholderCanvas } from '../../shared/image/placeholder';
 import { $ } from '../../shared/tools/toolHelpers';
 import { showToast } from '../../shared/ui/toast';
 import '../../styles/shared.css';
@@ -12,34 +13,34 @@ const labelInput = $<HTMLInputElement>('#labelInput');
 const previewCanvas = $<HTMLCanvasElement>('#previewCanvas');
 
 function render(): void {
-  const width = Math.max(1, Number(widthInput.value) || 400);
-  const height = Math.max(1, Number(heightInput.value) || 300);
-  previewCanvas.width = width;
-  previewCanvas.height = height;
-  const ctx = previewCanvas.getContext('2d')!;
-  ctx.fillStyle = bgColorInput.value;
-  ctx.fillRect(0, 0, width, height);
-
-  const label = labelInput.value.trim();
-  if (label) {
-    ctx.fillStyle = textColorInput.value;
-    ctx.font = `bold ${Math.round(Math.min(width, height) / 8)}px Inter, sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(label, width / 2, height / 2);
-  }
+  const canvas = renderPlaceholderCanvas({
+    width: Number(widthInput.value),
+    height: Number(heightInput.value),
+    backgroundColor: bgColorInput.value,
+    textColor: textColorInput.value,
+    label: labelInput.value,
+  });
+  previewCanvas.width = canvas.width;
+  previewCanvas.height = canvas.height;
+  previewCanvas.getContext('2d')!.drawImage(canvas, 0, 0);
 }
 
 async function download(): Promise<void> {
-  render();
+  const canvas = renderPlaceholderCanvas({
+    width: Number(widthInput.value),
+    height: Number(heightInput.value),
+    backgroundColor: bgColorInput.value,
+    textColor: textColorInput.value,
+    label: labelInput.value,
+  });
   const blob = await new Promise<Blob | null>((resolve) => {
-    previewCanvas.toBlob(resolve, 'image/png');
+    canvas.toBlob(resolve, 'image/png');
   });
   if (!blob) {
     showToast('Failed to generate PNG.');
     return;
   }
-  await downloadBlob(blob, `placeholder-${previewCanvas.width}x${previewCanvas.height}.png`);
+  await downloadBlob(blob, placeholderFilename(canvas.width, canvas.height));
   showToast('Placeholder downloaded.');
 }
 
