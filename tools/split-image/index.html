@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'self' blob: data:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self' blob:; worker-src 'none'" />
+  <meta name="description" content="Split sprite sheets and image grids into separate PNG files. Free browser tool — download as ZIP." />
+  <title>Split sprite sheet — Img2Favicon</title>
+  <link rel="canonical" href="https://dor-j.github.io/Img2Favicon/tools/split-image/index.html" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="split sprite sheet, unpack sprites, grid to images, slice sprite" />
+  <meta property="og:title" content="Split sprite sheet — Img2Favicon" />
+  <meta property="og:description" content="Split sprite sheets and image grids into separate PNG files. Free browser tool — download as ZIP." />
+  <meta property="og:url" content="https://dor-j.github.io/Img2Favicon/tools/split-image/index.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <meta property="og:site_name" content="Img2Favicon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Split sprite sheet — Img2Favicon" />
+  <meta name="twitter:description" content="Split sprite sheets and image grids into separate PNG files. Free browser tool — download as ZIP." />
+  <meta name="twitter:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Split sprite sheet","description":"Split sprite sheets and image grids into separate PNG files. Free browser tool — download as ZIP.","url":"https://dor-j.github.io/Img2Favicon/tools/split-image/index.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I set custom grid columns?","acceptedAnswer":{"@type":"Answer","text":"Yes. Specify columns and optional padding between cells."}}]}]</script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="shell tool-page">
+    <section class="hero">
+      <span class="eyebrow">Runs entirely in your browser</span>
+      <h1>Split sprite sheet</h1>
+      <p>Slice a grid or sprite sheet into separate PNG files in a ZIP.</p>
+    </section>
+    <div class="tool-layout">
+      <aside class="panel tool-controls">
+        <div class="panel-head"><div><h2>Controls</h2></div></div>
+        <section class="section">
+          
+          <div class="section-title"><span>Source image</span><button id="clearImage" type="button">Clear</button></div>
+          <label class="dropzone" id="dropzone" for="imageInput">
+              <span class="upload-thumb"><img id="uploadThumb" alt="" /></span>
+              <span class="upload-copy">
+                <strong id="uploadTitle">Drop an image here or browse</strong>
+                <span id="uploadSub">PNG, JPG, WebP, or GIF · up to 20 MB</span>
+                <span class="browse-chip" aria-hidden="true">Choose image</span>
+                <em id="uploadName"></em>
+              </span>
+              <i data-lucide="image-up" aria-hidden="true"></i>
+              <input class="visually-hidden" id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+            </label>
+          <div class="field-grid two" style="margin-top:12px"><div class="field"><label for="cellWidth">Cell width</label><input class="input" id="cellWidth" type="number" min="1" value="32" /></div><div class="field"><label for="cellHeight">Cell height</label><input class="input" id="cellHeight" type="number" min="1" value="32" /></div></div>
+            <div class="field" style="margin-top:12px"><label for="padInput">Padding</label><input class="input" id="padInput" type="number" min="0" value="0" /></div>
+          <div class="field">
+              <label for="formatSelect">Output format</label>
+              <select id="formatSelect"></select>
+            </div>
+            <div class="field" id="qualityField">
+              <label for="qualityRange">Quality</label>
+              <div class="range-row">
+                <input id="qualityRange" type="range" min="10" max="100" value="92" />
+                <output class="range-value" id="qualityValue">92%</output>
+              </div>
+            </div>
+          <button class="primary-button" id="downloadBtn" type="button" style="margin-top:16px">
+            <i data-lucide="download"></i> Download frames ZIP
+          </button>
+        </section>
+      </aside>
+      <section class="panel">
+        <div class="panel-head"><div><h2>Preview</h2><p>Live result before download.</p></div></div>
+        <div class="preview-wrap section">
+          <div class="tool-workspace">
+            <div class="tool-preview-wrap" id="previewWrap">
+              <canvas id="previewCanvas" class="tool-preview-canvas"></canvas>
+            </div>
+          </div>
+          <p class="tool-meta" id="metaInfo">Upload an image to begin.</p>
+        </div>
+      </section>
+    </div>
+    <div class="seo-content"><section class="seo-section" aria-label="How it works">
+      <h2>How it works</h2>
+      <ol>
+        <li>Upload a sprite sheet or grid image.</li>
+        <li>Set columns and padding.</li>
+        <li>Download individual frames as ZIP.</li>
+      </ol>
+    </section><section class="seo-section" aria-label="FAQ">
+      <h2>Frequently asked questions</h2>
+      <details class="seo-faq-item">
+      <summary>Can I set custom grid columns?</summary>
+      <p>Yes. Specify columns and optional padding between cells.</p>
+    </details>
+    </section></div>
+    <footer class="footer">
+      <span class="privacy"><i data-lucide="shield-check"></i> Private by design — image processing happens locally.</span>
+      <span>Img2Favicon · built for modern web projects</span>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="check-circle-2"></i><span id="toastText">Done</span></div>
+  <script type="module" src="/src/tools/split-image/main.ts"></script>
+</body>
+</html>

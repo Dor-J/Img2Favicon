@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'self' blob: data:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self' blob:; worker-src 'none'" />
+  <meta name="description" content="Check favicon kits for missing files and wrong sizes. Read-only validation in your browser." />
+  <title>Favicon checker — Img2Favicon</title>
+  <link rel="canonical" href="https://dor-j.github.io/Img2Favicon/tools/favicon-checker/index.html" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="favicon checker, validate favicon, favicon audit, missing icon sizes" />
+  <meta property="og:title" content="Favicon checker — Img2Favicon" />
+  <meta property="og:description" content="Check favicon kits for missing files and wrong sizes. Read-only validation in your browser." />
+  <meta property="og:url" content="https://dor-j.github.io/Img2Favicon/tools/favicon-checker/index.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <meta property="og:site_name" content="Img2Favicon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Favicon checker — Img2Favicon" />
+  <meta name="twitter:description" content="Check favicon kits for missing files and wrong sizes. Read-only validation in your browser." />
+  <meta name="twitter:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Favicon checker","description":"Check favicon kits for missing files and wrong sizes. Read-only validation in your browser.","url":"https://dor-j.github.io/Img2Favicon/tools/favicon-checker/index.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this generate missing icons?","acceptedAnswer":{"@type":"Answer","text":"No. It reports issues only. Use the favicon generator to create a kit."}}]}]</script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="shell tool-page">
+    <section class="hero">
+      <span class="eyebrow">Runs entirely in your browser</span>
+      <h1>Favicon checker</h1>
+      <p>Validate your favicon kit — missing sizes, wrong dimensions, no manifest.</p>
+    </section>
+    <div class="tool-layout tool-layout-single">
+      <section class="panel">
+        <div class="panel-head"><div><h2>Upload kit</h2><p>Drop favicon files or a ZIP to validate.</p></div></div>
+        <section class="section">
+          <p class="tool-note">Drop individual PNG/ICO/SVG files or a ZIP of your favicon kit.</p>
+          <label class="dropzone" id="dropzone" for="fileInput">
+            <span class="upload-copy">
+              <strong id="uploadTitle">Drop favicon files or ZIP here</strong>
+              <span id="uploadSub">PNG, ICO, SVG, or ZIP archive</span>
+              <span class="browse-chip" aria-hidden="true">Choose files</span>
+            </span>
+            <i data-lucide="folder-search" aria-hidden="true"></i>
+            <input class="visually-hidden" id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/x-icon,image/svg+xml,.ico,.svg,.zip,application/zip" multiple />
+          </label>
+          <div class="report-panel" id="reportPanel">
+            <p class="tool-meta">Upload files to see the validation report.</p>
+          </div>
+        </section>
+      </section>
+    </div>
+    <div class="seo-content"><section class="seo-section" aria-label="How it works">
+      <h2>How it works</h2>
+      <ol>
+        <li>Drop favicon files or a ZIP.</li>
+        <li>Review the validation report.</li>
+        <li>Fix any missing or wrong sizes.</li>
+      </ol>
+    </section><section class="seo-section" aria-label="FAQ">
+      <h2>Frequently asked questions</h2>
+      <details class="seo-faq-item">
+      <summary>Does this generate missing icons?</summary>
+      <p>No. It reports issues only. Use the favicon generator to create a kit.</p>
+    </details>
+    </section></div>
+    <footer class="footer">
+      <span class="privacy"><i data-lucide="shield-check"></i> Private by design — image processing happens locally.</span>
+      <span>Img2Favicon · built for modern web projects</span>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="check-circle-2"></i><span id="toastText">Done</span></div>
+  <script type="module" src="/src/tools/favicon-checker/main.ts"></script>
+</body>
+</html>
