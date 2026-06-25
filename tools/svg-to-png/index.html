@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'self' blob: data:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self' blob:; worker-src 'none'" />
+  <meta name="description" content="Convert SVG to PNG at custom dimensions. Client-side rasterization, free and private." />
+  <title>SVG to PNG — Img2Favicon</title>
+  <link rel="canonical" href="https://dor-j.github.io/Img2Favicon/tools/svg-to-png/index.html" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="svg to png, rasterize svg, svg converter, svg export png" />
+  <meta property="og:title" content="SVG to PNG — Img2Favicon" />
+  <meta property="og:description" content="Convert SVG to PNG at custom dimensions. Client-side rasterization, free and private." />
+  <meta property="og:url" content="https://dor-j.github.io/Img2Favicon/tools/svg-to-png/index.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <meta property="og:site_name" content="Img2Favicon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SVG to PNG — Img2Favicon" />
+  <meta name="twitter:description" content="Convert SVG to PNG at custom dimensions. Client-side rasterization, free and private." />
+  <meta name="twitter:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"SVG to PNG","description":"Convert SVG to PNG at custom dimensions. Client-side rasterization, free and private.","url":"https://dor-j.github.io/Img2Favicon/tools/svg-to-png/index.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I choose the output size?","acceptedAnswer":{"@type":"Answer","text":"Yes. Set width and height in pixels before export."}}]}]</script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="shell tool-page">
+    <section class="hero">
+      <span class="eyebrow">Runs entirely in your browser</span>
+      <h1>SVG to PNG</h1>
+      <p>Rasterize SVG files to PNG at any pixel size.</p>
+    </section>
+    <div class="tool-layout">
+      <aside class="panel tool-controls">
+        <div class="panel-head"><div><h2>Controls</h2></div></div>
+        <section class="section">
+          
+          <div class="section-title"><span>Source image</span><button id="clearImage" type="button">Clear</button></div>
+          <label class="dropzone" id="dropzone" for="imageInput">
+              <span class="upload-thumb"><img id="uploadThumb" alt="" /></span>
+              <span class="upload-copy">
+                <strong id="uploadTitle">Drop an image here or browse</strong>
+                <span id="uploadSub">SVG file · up to 20 MB</span>
+                <span class="browse-chip" aria-hidden="true">Choose image</span>
+                <em id="uploadName"></em>
+              </span>
+              <i data-lucide="image-up" aria-hidden="true"></i>
+              <input class="visually-hidden" id="imageInput" type="file" accept="image/svg+xml,.svg" />
+            </label>
+          <div class="field-grid two" style="margin-top:12px">
+              <div class="field"><label for="outWidth">Width</label><input class="input" id="outWidth" type="number" min="1" value="512" /></div>
+              <div class="field"><label for="outHeight">Height</label><input class="input" id="outHeight" type="number" min="1" value="512" /></div>
+            </div>
+          
+          <button class="primary-button" id="downloadBtn" type="button" style="margin-top:16px">
+            <i data-lucide="download"></i> Download
+          </button>
+        </section>
+      </aside>
+      <section class="panel">
+        <div class="panel-head"><div><h2>Preview</h2><p>Live result before download.</p></div></div>
+        <div class="preview-wrap section">
+          <div class="tool-workspace">
+            <div class="tool-preview-wrap" id="previewWrap">
+              <canvas id="previewCanvas" class="tool-preview-canvas"></canvas>
+            </div>
+          </div>
+          <p class="tool-meta" id="metaInfo">Upload an image to begin.</p>
+        </div>
+      </section>
+    </div>
+    <div class="seo-content"><section class="seo-section" aria-label="How it works">
+      <h2>How it works</h2>
+      <ol>
+        <li>Upload an SVG file.</li>
+        <li>Set output dimensions.</li>
+        <li>Download PNG.</li>
+      </ol>
+    </section><section class="seo-section" aria-label="FAQ">
+      <h2>Frequently asked questions</h2>
+      <details class="seo-faq-item">
+      <summary>Can I choose the output size?</summary>
+      <p>Yes. Set width and height in pixels before export.</p>
+    </details>
+    </section></div>
+    <footer class="footer">
+      <span class="privacy"><i data-lucide="shield-check"></i> Private by design — image processing happens locally.</span>
+      <span>Img2Favicon · built for modern web projects</span>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="check-circle-2"></i><span id="toastText">Done</span></div>
+  <script type="module" src="/src/tools/svg-to-png/main.ts"></script>
+</body>
+</html>
