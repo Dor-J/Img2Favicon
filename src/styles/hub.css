@@ -17,6 +17,23 @@
   gap: 16px;
 }
 
+@media (max-width: 479px) {
+  .hub-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hub-card {
+    padding: 18px;
+    min-height: 44px;
+  }
+
+  .hub-card:active {
+    transform: none;
+    border-color: var(--accent);
+  }
+}
+
 .hub-card {
   display: flex;
   flex-direction: column;
@@ -32,8 +49,13 @@
 }
 
 .hub-card:hover {
-  transform: translateY(-3px);
   border-color: var(--line-strong);
+}
+
+@media (hover: hover) {
+  .hub-card:hover {
+    transform: translateY(-3px);
+  }
 }
 
 .hub-card-icon {

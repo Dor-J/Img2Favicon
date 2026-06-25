@@ -78,6 +78,12 @@ export function initIntentPrefetch(options?: { selector?: string }): void {
   );
 
   document.addEventListener(
+    'touchstart',
+    (event) => prefetchFromEvent(event, selector),
+    { capture: true, passive: true },
+  );
+
+  document.addEventListener(
     'focusin',
     (event) => prefetchFromEvent(event, selector),
     true,

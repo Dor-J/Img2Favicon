@@ -154,8 +154,11 @@
     .color-input::-webkit-color-swatch-wrapper { padding: 0; }
     .color-input::-webkit-color-swatch { border: 0; border-radius: 7px; }
 
-    .segmented { display: flex; gap: 6px; padding: 4px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface-soft); }
-    .segmented button { flex: 1; min-height: 34px; padding: 0 9px; border: 0; border-radius: 8px; background: transparent; color: var(--faint); font-size: .76rem; font-weight: 750; }
+    .segmented { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface-soft); }
+    .segmented button {
+      flex: 1 1 calc(50% - 3px); min-width: calc(50% - 3px); min-height: 40px; padding: 0 9px; border: 0; border-radius: 8px;
+      background: transparent; color: var(--faint); font-size: .76rem; font-weight: 750;
+    }
     .segmented button.active { background: var(--surface-strong); color: var(--text); box-shadow: 0 1px 5px rgba(0,0,0,.13); }
 
     .range-row { display: grid; grid-template-columns: 1fr auto; gap: 11px; align-items: center; }
@@ -304,7 +307,7 @@
     /* Mobile first: full-width panels; size cards stay comfortably tappable. */
     @media (max-width: 479px) {
       .shell { width: min(100% - 24px, 1500px); }
-      .topbar { min-height: 67px; }
+      .topbar { min-height: 67px; gap: 8px; }
       .brand small, .ghost-button span { display: none; }
       .ghost-button { width: 40px; padding: 0; }
       .panel-head, .section, .preview-wrap { padding-left: 15px; padding-right: 15px; }
@@ -314,8 +317,31 @@
       .preview-strip { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 4px; }
       .mini-preview { flex: 0 0 68px; scroll-snap-align: start; }
       .primary-button { width: calc(100% - 30px); margin-left: 15px; margin-right: 15px; }
+      .tool-page .section .primary-button,
+      .tool-page .section .minor-button.primary-button {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        min-height: 48px;
+      }
+      .tool-page .hero { padding-bottom: 20px; }
+      .tool-layout { gap: 14px; }
+      .tool-workspace { min-height: min(64vw, 260px); padding: 12px; }
+      .tool-page .panel-head { padding-top: 16px; }
+      .tool-page .dropzone { min-height: 118px; }
+      .tool-page .dropzone.has-image { min-height: 84px; }
+      .button-row .minor-button { flex: 1 1 calc(50% - 4px); min-width: calc(50% - 4px); }
+      .upload-copy em { max-width: 100%; }
       .snippet-wrap { padding-left: 15px; padding-right: 15px; }
       .copy-button { right: 21px; }
+    }
+
+    @media (min-width: 520px) {
+      .segmented button {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 34px;
+      }
     }
 
     @media (min-width: 650px) {
@@ -422,6 +448,11 @@
     }
     .tool-page { padding-bottom: 48px; }
     .tool-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    @media (max-width: 899px) {
+      .tool-layout { gap: 16px; }
+      .tool-workspace { min-height: min(72vw, 340px); }
+      .tool-controls .section { padding-top: 18px; padding-bottom: 18px; }
+    }
     @media (min-width: 900px) {
       .tool-layout { grid-template-columns: minmax(280px, .9fr) minmax(360px, 1.1fr); align-items: start; }
       .tool-controls { position: sticky; top: 18px; }

@@ -76,6 +76,14 @@ describe('initIntentPrefetch', () => {
     expect(document.head.querySelectorAll('link[rel="prefetch"]')).toHaveLength(1);
   });
 
+  it('prefetches on touchstart for matching links', () => {
+    initIntentPrefetch();
+    const link = document.querySelector('a.hub-card') as HTMLAnchorElement;
+    link.dispatchEvent(new TouchEvent('touchstart', { bubbles: true }));
+
+    expect(document.head.querySelectorAll('link[rel="prefetch"]')).toHaveLength(1);
+  });
+
   it('attaches listeners only once', () => {
     initIntentPrefetch();
     initIntentPrefetch();
