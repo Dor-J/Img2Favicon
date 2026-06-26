@@ -505,6 +505,47 @@ function buildPage(build: ToolBuild): string {
   }
 }
 
+function removeGeneratedSeoHead(headHtml: string): string {
+  return headHtml
+    .replace(/^\s*<link rel="canonical"[^>]*\/>\r?\n?/gm, '')
+    .replace(/^\s*<meta name="robots"[^>]*\/>\r?\n?/gm, '')
+    .replace(/^\s*<meta name="keywords"[^>]*\/>\r?\n?/gm, '')
+    .replace(/^\s*<meta property="og:[^"]+"[^>]*\/>\r?\n?/gm, '')
+    .replace(/^\s*<meta name="twitter:[^"]+"[^>]*\/>\r?\n?/gm, '')
+    .replace(/^\s*<link rel="icon"[^>]*\/>\r?\n?/gm, '')
+    .replace(/^\s*<link rel="apple-touch-icon"[^>]*\/>\r?\n?/gm, '')
+    .replace(/^\s*<script type="application\/ld\+json">.*<\/script>\r?\n?/gm, '');
+}
+
+function replaceFaviconSeo(
+  html: string,
+  pageTitle: string,
+  pageDescription: string,
+  seoHead: string,
+  seoContent: string,
+): string {
+  const withHead = html.replace(/<head>[\s\S]*?<\/head>/, (headHtml) => {
+    const cleanedHead = removeGeneratedSeoHead(headHtml)
+      .replace(
+        /<meta name="description" content="[^"]*" \/>/,
+        `<meta name="description" content="${escapeHtml(pageDescription)}" />`,
+      )
+      .replace(
+        /<title>[^<]*<\/title>/,
+        `<title>${escapeHtml(pageTitle)}</title>\n  ${seoHead}`,
+      );
+
+    return cleanedHead;
+  });
+
+  return withHead
+    .replace(/\n\s*<div class="seo-content">[\s\S]*?<\/div>/g, '')
+    .replace(
+      /\n    <footer class="footer">/,
+      `\n    ${seoContent}\n    <footer class="footer">`,
+    );
+}
+
 for (const build of TOOL_BUILDS) {
   const page = getPageById(build.id);
   if (!page) throw new Error(`Missing page registry entry for ${build.id}`);
@@ -567,19 +608,16 @@ if (faviconPage) {
   });
   const faviconSeoContent = buildSeoContent(faviconPage);
 
-  faviconHtml = faviconHtml.replace(
-    /<meta name="description" content="[^"]*" \/>/,
-    `<meta name="description" content="${escapeHtml(faviconPage.seoDescription)}" />`,
+  writeFileSync(
+    faviconPath,
+    replaceFaviconSeo(
+      faviconHtml,
+      faviconTitle,
+      faviconPage.seoDescription,
+      faviconSeoHead,
+      faviconSeoContent,
+    ),
   );
-  faviconHtml = faviconHtml.replace(
-    /<title>[^<]*<\/title>/,
-    `<title>${escapeHtml(faviconTitle)}</title>\n  ${faviconSeoHead}`,
-  );
-  faviconHtml = faviconHtml.replace(
-    /\n    <footer class="footer">/,
-    `\n    ${faviconSeoContent}\n    <footer class="footer">`,
-  );
-  writeFileSync(faviconPath, faviconHtml);
 }
 
 mkdirSync('public', { recursive: true });

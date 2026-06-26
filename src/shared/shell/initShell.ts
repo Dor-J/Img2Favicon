@@ -1,4 +1,64 @@
-import { createIcons } from 'lucide';
+import {
+  Accessibility,
+  BadgeCheck,
+  Binary,
+  CheckCircle2,
+  ChevronDown,
+  Circle,
+  CircleDot,
+  Code2,
+  Columns2,
+  Contrast,
+  Copy,
+  Crop,
+  Download,
+  Eraser,
+  FileDown,
+  FileImage,
+  FileJson,
+  FileSearch,
+  FileText,
+  FileType,
+  Files,
+  Film,
+  FlipHorizontal,
+  FlipVertical,
+  Focus,
+  FolderSearch,
+  Grid2x2,
+  Grid3x3,
+  ImageUp,
+  Images,
+  Info,
+  LayoutGrid,
+  ListChecks,
+  MessageSquare,
+  Minimize2,
+  MonitorSmartphone,
+  Moon,
+  PackageOpen,
+  Palette,
+  QrCode,
+  RectangleHorizontal,
+  RefreshCw,
+  RotateCcw,
+  RotateCw,
+  Scan,
+  ScanEye,
+  Share2,
+  ShieldCheck,
+  ShieldOff,
+  Shuffle,
+  SlidersHorizontal,
+  Smartphone,
+  Sparkles,
+  Square,
+  Stamp,
+  Sun,
+  SunMedium,
+  TableColumnsSplit,
+  createIcons,
+} from 'lucide';
 import { CATEGORY_LABELS } from '../seo/categories';
 import { getToolsByCategory } from '../seo/categories';
 import { initIntentPrefetch } from './prefetchNav';
@@ -9,6 +69,67 @@ export interface ShellOptions {
   showReset?: boolean;
   onReset?: () => void;
 }
+
+const APP_ICONS = {
+  Accessibility,
+  BadgeCheck,
+  Binary,
+  CheckCircle2,
+  ChevronDown,
+  Circle,
+  CircleDot,
+  Code2,
+  Columns2,
+  Contrast,
+  Copy,
+  Crop,
+  Download,
+  Eraser,
+  FileDown,
+  FileImage,
+  FileJson,
+  FileSearch,
+  FileText,
+  FileType,
+  Files,
+  Film,
+  FlipHorizontal,
+  FlipVertical,
+  Focus,
+  FolderSearch,
+  Grid2x2,
+  Grid3x3,
+  ImageUp,
+  Images,
+  Info,
+  LayoutGrid,
+  ListChecks,
+  MessageSquare,
+  Minimize2,
+  MonitorSmartphone,
+  Moon,
+  PackageOpen,
+  Palette,
+  QrCode,
+  RectangleHorizontal,
+  RefreshCw,
+  RotateCcw,
+  RotateCw,
+  Scan,
+  ScanEye,
+  Share2,
+  ShieldCheck,
+  ShieldOff,
+  Shuffle,
+  SlidersHorizontal,
+  Smartphone,
+  Sparkles,
+  Square,
+  Stamp,
+  Sun,
+  SunMedium,
+  TableColumnsSplit,
+};
 
 function hubHref(): string {
   return window.location.pathname.includes('/tools/') ? '../../index.html' : './index.html';
@@ -112,7 +233,7 @@ function setupToolsDropdown(): void {
 }
 
 function setupIcons(): void {
-  createIcons({ attrs: { 'stroke-width': '2' } });
+  createIcons({ icons: APP_ICONS, attrs: { 'stroke-width': '2' } });
 }
 
 function toggleTheme(): void {
@@ -120,8 +241,7 @@ function toggleTheme(): void {
   const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
   root.dataset.theme = next;
   localStorage.setItem('forgefavicon-theme', next);
-  const buttonIcon = document.querySelector('#themeToggle i');
-  buttonIcon?.setAttribute('data-lucide', next === 'dark' ? 'sun' : 'moon');
+  renderThemeIcon(next);
   setupIcons();
 }
 
@@ -130,10 +250,14 @@ function restoreTheme(): void {
   const theme =
     saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
   document.documentElement.dataset.theme = theme;
-  document.querySelector('#themeToggle i')?.setAttribute(
-    'data-lucide',
-    theme === 'dark' ? 'sun' : 'moon',
-  );
+  renderThemeIcon(theme);
+}
+
+function renderThemeIcon(theme: string): void {
+  const button = document.querySelector('#themeToggle');
+  if (!button) return;
+
+  button.innerHTML = `<i data-lucide="${theme === 'dark' ? 'sun' : 'moon'}"></i>`;
 }
 
 /** Re-renders lucide icons after dynamic DOM updates. */
