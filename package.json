@@ -9,6 +9,7 @@
     "generate:assets": "bun scripts/generate-public-assets.ts",
     "generate:sitemap": "bun scripts/generate-sitemap.ts",
     "build": "bun run generate:assets && bun run generate:pages && tsc --noEmit && vite build && bun run generate:sitemap",
+    "deploy": "bun run build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest"

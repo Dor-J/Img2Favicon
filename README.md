@@ -64,6 +64,7 @@ bun install
 bun run dev
 bun run test
 bun run build
+bun run deploy
 bun run preview
 ```
 
@@ -108,7 +109,12 @@ SITE_URL=https://your-domain.example bun run build
 
 ## Deployment
 
-GitHub Pages deploys automatically from `main` via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+Production builds use the default site URL in `src/shared/seo/site.ts`. CI runs `bun run deploy`
+(same as `bun run build`) and publishes `dist/` to the `gh-pages` branch via
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+In the repo **Settings → Pages**, set **Source** to **Deploy from a branch**, branch
+`gh-pages`, folder `/ (root)`.
 
 Live site: https://dor-j.github.io/Img2Favicon/
 
