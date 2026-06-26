@@ -109,20 +109,21 @@ SITE_URL=https://your-domain.example bun run build
 
 ## Deployment
 
-CI runs `bun run deploy` (same as `bun run build`) and publishes the Vite output via
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+The site deploys automatically on every push to `main` via
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
 
-**Required GitHub Pages setting:** In the repo **Settings → Pages**, set **Source** to
-**GitHub Actions** — not “Deploy from branch → main”. If Pages serves the `main` branch
-root, visitors get unstyled HTML (no CSS) because that branch holds source files, not the
-built `dist/` output.
+1. **Build** — `bun run deploy` (same as `bun run build`) produces the Vite output in `dist/`
+2. **Deploy** — GitHub Actions uploads `dist/` and publishes to Pages
 
-**Site looks broken (blue links, no layout)?** Pages is pointing at the wrong source. Either:
+### One-time GitHub Pages setup
 
-1. **Recommended:** **Settings → Pages → Source → GitHub Actions**, then re-run the deploy
-   workflow.
-2. **Alternative:** **Deploy from branch → `gh-pages` → `/ (root)`** if you use the
-   `gh-pages` branch workflow instead.
+In the repo **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**.
+
+Do **not** use **Deploy from a branch → `main` → `/ (root)`** — that serves source files
+instead of the built site, so CSS and JS will not load.
+
+To deploy manually, run the **Deploy to GitHub Pages** workflow from the **Actions** tab
+(**workflow_dispatch**).
 
 Live site: https://dor-j.github.io/Img2Favicon/
 
