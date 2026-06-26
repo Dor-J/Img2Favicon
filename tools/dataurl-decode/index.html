@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'self' blob: data:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self' blob:; worker-src 'none'" />
+  <meta name="description" content="Convert Base64 data URLs to PNG or JPG images locally in your browser. Free decoder, no upload." />
+  <title>Data URL to image — Img2Favicon</title>
+  <link rel="canonical" href="https://dor-j.github.io/Img2Favicon/tools/dataurl-decode/index.html" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="data url to image, base64 decode, decode data uri, base64 to png" />
+  <meta property="og:title" content="Data URL to image — Img2Favicon" />
+  <meta property="og:description" content="Convert Base64 data URLs to PNG or JPG images locally in your browser. Free decoder, no upload." />
+  <meta property="og:url" content="https://dor-j.github.io/Img2Favicon/tools/dataurl-decode/index.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <meta property="og:site_name" content="Img2Favicon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Data URL to image — Img2Favicon" />
+  <meta name="twitter:description" content="Convert Base64 data URLs to PNG or JPG images locally in your browser. Free decoder, no upload." />
+  <meta name="twitter:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Data URL to image","description":"Convert Base64 data URLs to PNG or JPG images locally in your browser. Free decoder, no upload.","url":"https://dor-j.github.io/Img2Favicon/tools/dataurl-decode/index.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need the data: prefix?","acceptedAnswer":{"@type":"Answer","text":"Either works — paste the full data URL or raw Base64 payload."}}]}]</script>
+  <script type="module" crossorigin src="../../assets/dataurl-decode-gimh_Vfe.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/shared-DpybSr3x.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toast-lv42anyN.js">
+  <link rel="modulepreload" crossorigin href="../../assets/encode-DsbjXOzB.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toolHelpers-CQsi2vg5.js">
+  <link rel="modulepreload" crossorigin href="../../assets/dimensions-Cw5k5CKO.js">
+  <link rel="stylesheet" crossorigin href="../../assets/shared-63VV_njx.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="shell tool-page">
+    <section class="hero">
+      <span class="eyebrow">Runs entirely in your browser</span>
+      <h1>Data URL to image</h1>
+      <p>Decode a Base64 data URL back into a downloadable image file.</p>
+    </section>
+    <div class="tool-layout">
+      <aside class="panel tool-controls">
+        <div class="panel-head"><div><h2>Controls</h2></div></div>
+        <section class="section">
+          <div class="field"><label for="dataUrlInput">Data URL or Base64</label><textarea class="copy-output" id="dataUrlInput" rows="5" placeholder="data:image/png;base64,..."></textarea></div>
+            <div class="button-row" style="margin-top:16px"><button class="primary-button" id="downloadPng" type="button"><i data-lucide="download"></i> PNG</button><button class="minor-button" id="downloadJpg" type="button"><i data-lucide="download"></i> JPG</button></div>
+          
+        </section>
+      </aside>
+      <section class="panel">
+        <div class="panel-head"><div><h2>Output</h2><p>Live preview before export.</p></div></div>
+        <div class="preview-wrap section">
+          <div class="tool-workspace"><canvas id="previewCanvas" class="tool-preview-canvas"></canvas></div><p class="tool-meta" id="metaInfo">Paste a data URL to decode.</p>
+        </div>
+      </section>
+    </div>
+    <div class="seo-content"><section class="seo-section" aria-label="How it works">
+      <h2>How it works</h2>
+      <ol>
+        <li>Paste a data URL or Base64 string.</li>
+        <li>Preview the decoded image.</li>
+        <li>Download as PNG or JPG.</li>
+      </ol>
+    </section><section class="seo-section" aria-label="FAQ">
+      <h2>Frequently asked questions</h2>
+      <details class="seo-faq-item">
+      <summary>Do I need the data: prefix?</summary>
+      <p>Either works — paste the full data URL or raw Base64 payload.</p>
+    </details>
+    </section></div>
+    <footer class="footer">
+      <span class="privacy"><i data-lucide="shield-check"></i> Private by design — image processing happens locally.</span>
+      <span>Img2Favicon · built for modern web projects</span>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="check-circle-2"></i><span id="toastText">Done</span></div>
+</body>
+</html>

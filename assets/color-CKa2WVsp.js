@@ -1,0 +1,3 @@
+function e(e){let t=e.replace(`#`,``);return{r:parseInt(t.slice(0,2),16),g:parseInt(t.slice(2,4),16),b:parseInt(t.slice(4,6),16)}}function t(t,n,r=90){let i=e(t),a=e(n);return Math.abs(i.r-a.r)+Math.abs(i.g-a.g)+Math.abs(i.b-a.b)<r}function n(e){return e.filter((e,n,r)=>r.findIndex(n=>t(e,n))===n)}function r(e){return e.map((e,t)=>`  --color-${t+1}: ${e};`).join(`
+`)}export{n,e as r,r as t};
+//# sourceMappingURL=color-CKa2WVsp.js.map

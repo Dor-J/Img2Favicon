@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'self' blob: data:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self' blob:; worker-src 'none'" />
+  <meta name="description" content="Add text or logo watermarks to images in your browser. Control opacity and position — free, no upload." />
+  <title>Watermark — Img2Favicon</title>
+  <link rel="canonical" href="https://dor-j.github.io/Img2Favicon/tools/watermark/index.html" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="watermark image, add watermark, logo watermark, text watermark" />
+  <meta property="og:title" content="Watermark — Img2Favicon" />
+  <meta property="og:description" content="Add text or logo watermarks to images in your browser. Control opacity and position — free, no upload." />
+  <meta property="og:url" content="https://dor-j.github.io/Img2Favicon/tools/watermark/index.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <meta property="og:site_name" content="Img2Favicon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Watermark — Img2Favicon" />
+  <meta name="twitter:description" content="Add text or logo watermarks to images in your browser. Control opacity and position — free, no upload." />
+  <meta name="twitter:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Watermark","description":"Add text or logo watermarks to images in your browser. Control opacity and position — free, no upload.","url":"https://dor-j.github.io/Img2Favicon/tools/watermark/index.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I watermark with my logo?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch to logo mode and upload a PNG or WebP logo with scale and position controls."}},{"@type":"Question","name":"Where can the watermark be placed?","acceptedAnswer":{"@type":"Answer","text":"Nine positions are available: corners, center, and top/bottom center."}}]}]</script>
+  <script type="module" crossorigin src="../../assets/watermark-k8_hKB_7.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/shared-DpybSr3x.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toast-lv42anyN.js">
+  <link rel="modulepreload" crossorigin href="../../assets/rangeDisplay-ZwO5flnN.js">
+  <link rel="modulepreload" crossorigin href="../../assets/fileDrop-CsQ11loF.js">
+  <link rel="modulepreload" crossorigin href="../../assets/encode-DsbjXOzB.js">
+  <link rel="modulepreload" crossorigin href="../../assets/loadImage-5rLF3r1U.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toolHelpers-CQsi2vg5.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toolBase-9qVME59M.js">
+  <link rel="modulepreload" crossorigin href="../../assets/dimensions-Cw5k5CKO.js">
+  <link rel="stylesheet" crossorigin href="../../assets/shared-63VV_njx.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="shell tool-page">
+    <section class="hero">
+      <span class="eyebrow">Runs entirely in your browser</span>
+      <h1>Watermark</h1>
+      <p>Add text or logo watermarks with opacity and position control.</p>
+    </section>
+    <div class="tool-layout">
+      <aside class="panel tool-controls">
+        <div class="panel-head"><div><h2>Controls</h2></div></div>
+        <section class="section">
+          
+          <div class="section-title"><span>Source image</span><button id="clearImage" type="button">Clear</button></div>
+          <label class="dropzone" id="dropzone" for="imageInput">
+              <span class="upload-thumb"><img id="uploadThumb" alt="" /></span>
+              <span class="upload-copy">
+                <strong id="uploadTitle">Drop an image here or browse</strong>
+                <span id="uploadSub">PNG, JPG, WebP, or GIF · up to 20 MB</span>
+                <span class="browse-chip" aria-hidden="true">Choose image</span>
+                <em id="uploadName"></em>
+              </span>
+              <i data-lucide="image-up" aria-hidden="true"></i>
+              <input class="visually-hidden" id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+            </label>
+          <div class="segmented" id="wmMode" style="margin-bottom:12px">
+              <button class="active" type="button" data-mode="text">Text</button><button type="button" data-mode="logo">Logo</button></div>
+            <div id="textControls">
+              <div class="field"><label for="wmText">Text</label><input class="input" id="wmText" value="© Your Name" /></div>
+              <div class="field" style="margin-top:12px"><label for="wmFontSize">Font size</label><input class="input" id="wmFontSize" type="number" min="8" max="200" value="32" /></div>
+              <div class="field" style="margin-top:12px"><label for="wmColor">Color</label><input class="color-input" id="wmColor" type="color" value="#ffffff" /></div>
+            </div>
+            <div id="logoControls" class="hide">
+              <div class="field"><label for="logoInput">Logo PNG</label><input class="input" id="logoInput" type="file" accept="image/png,image/webp" /></div>
+              <div class="field" style="margin-top:12px"><label for="logoScale">Scale</label><div class="range-row"><input id="logoScale" type="range" min="5" max="100" value="25" /><output class="range-value" id="logoScaleValue">25%</output></div></div>
+            </div>
+            <div class="field" style="margin-top:12px"><label for="wmPosition">Position</label>
+              <select id="wmPosition"><option value="bottom-right">Bottom right</option><option value="bottom-center">Bottom center</option><option value="bottom-left">Bottom left</option>
+              <option value="center">Center</option><option value="top-right">Top right</option><option value="top-center">Top center</option><option value="top-left">Top left</option></select></div>
+            <div class="field" style="margin-top:12px"><label for="wmOpacity">Opacity</label><div class="range-row"><input id="wmOpacity" type="range" min="5" max="100" value="70" /><output class="range-value" id="wmOpacityValue">70%</output></div></div>
+          <div class="field">
+              <label for="formatSelect">Output format</label>
+              <select id="formatSelect"></select>
+            </div>
+            <div class="field" id="qualityField">
+              <label for="qualityRange">Quality</label>
+              <div class="range-row">
+                <input id="qualityRange" type="range" min="10" max="100" value="92" />
+                <output class="range-value" id="qualityValue">92%</output>
+              </div>
+            </div>
+          <button class="primary-button" id="downloadBtn" type="button" style="margin-top:16px">
+            <i data-lucide="download"></i> Download
+          </button>
+        </section>
+      </aside>
+      <section class="panel">
+        <div class="panel-head"><div><h2>Preview</h2><p>Live result before download.</p></div></div>
+        <div class="preview-wrap section">
+          <div class="tool-workspace">
+            <div class="tool-preview-wrap" id="previewWrap">
+              <canvas id="previewCanvas" class="tool-preview-canvas"></canvas>
+            </div>
+          </div>
+          <p class="tool-meta" id="metaInfo">Upload an image to begin.</p>
+        </div>
+      </section>
+    </div>
+    <div class="seo-content"><section class="seo-section" aria-label="How it works">
+      <h2>How it works</h2>
+      <ol>
+        <li>Upload the image you want to watermark.</li>
+        <li>Choose text or logo mode and configure content, opacity, and position.</li>
+        <li>Download the watermarked image.</li>
+      </ol>
+    </section><section class="seo-section" aria-label="FAQ">
+      <h2>Frequently asked questions</h2>
+      <details class="seo-faq-item">
+      <summary>Can I watermark with my logo?</summary>
+      <p>Yes. Switch to logo mode and upload a PNG or WebP logo with scale and position controls.</p>
+    </details>
+      <details class="seo-faq-item">
+      <summary>Where can the watermark be placed?</summary>
+      <p>Nine positions are available: corners, center, and top/bottom center.</p>
+    </details>
+    </section></div>
+    <footer class="footer">
+      <span class="privacy"><i data-lucide="shield-check"></i> Private by design — image processing happens locally.</span>
+      <span>Img2Favicon · built for modern web projects</span>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="check-circle-2"></i><span id="toastText">Done</span></div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'self' blob: data:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self' blob:; worker-src 'none'" />
+  <meta name="description" content="Free online image cropper with aspect ratio presets (1:1, 16:9, 4:3) or freeform crop. Private, browser-based." />
+  <title>Crop — Img2Favicon</title>
+  <link rel="canonical" href="https://dor-j.github.io/Img2Favicon/tools/crop/index.html" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="crop image, image cropper, aspect ratio crop, free crop tool" />
+  <meta property="og:title" content="Crop — Img2Favicon" />
+  <meta property="og:description" content="Free online image cropper with aspect ratio presets (1:1, 16:9, 4:3) or freeform crop. Private, browser-based." />
+  <meta property="og:url" content="https://dor-j.github.io/Img2Favicon/tools/crop/index.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <meta property="og:site_name" content="Img2Favicon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Crop — Img2Favicon" />
+  <meta name="twitter:description" content="Free online image cropper with aspect ratio presets (1:1, 16:9, 4:3) or freeform crop. Private, browser-based." />
+  <meta name="twitter:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Crop","description":"Free online image cropper with aspect ratio presets (1:1, 16:9, 4:3) or freeform crop. Private, browser-based.","url":"https://dor-j.github.io/Img2Favicon/tools/crop/index.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What aspect ratios are supported?","acceptedAnswer":{"@type":"Answer","text":"Free, 1:1, 16:9, 4:3, and 3:2 presets are available, plus freeform cropping."}},{"@type":"Question","name":"Does cropping upload my photo?","acceptedAnswer":{"@type":"Answer","text":"No. Cropping is done locally in your browser."}}]}]</script>
+  <script type="module" crossorigin src="../../assets/crop-D0jcLr2f.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/shared-DpybSr3x.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toast-lv42anyN.js">
+  <link rel="modulepreload" crossorigin href="../../assets/rangeDisplay-ZwO5flnN.js">
+  <link rel="modulepreload" crossorigin href="../../assets/fileDrop-CsQ11loF.js">
+  <link rel="modulepreload" crossorigin href="../../assets/encode-DsbjXOzB.js">
+  <link rel="modulepreload" crossorigin href="../../assets/loadImage-5rLF3r1U.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toolHelpers-CQsi2vg5.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toolBase-9qVME59M.js">
+  <link rel="modulepreload" crossorigin href="../../assets/dimensions-Cw5k5CKO.js">
+  <link rel="stylesheet" crossorigin href="../../assets/shared-63VV_njx.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="shell tool-page">
+    <section class="hero">
+      <span class="eyebrow">Runs entirely in your browser</span>
+      <h1>Crop</h1>
+      <p>Crop images to fixed ratios or a freeform region.</p>
+    </section>
+    <div class="tool-layout">
+      <aside class="panel tool-controls">
+        <div class="panel-head"><div><h2>Controls</h2></div></div>
+        <section class="section">
+          
+          <div class="section-title"><span>Source image</span><button id="clearImage" type="button">Clear</button></div>
+          <label class="dropzone" id="dropzone" for="imageInput">
+              <span class="upload-thumb"><img id="uploadThumb" alt="" /></span>
+              <span class="upload-copy">
+                <strong id="uploadTitle">Drop an image here or browse</strong>
+                <span id="uploadSub">PNG, JPG, WebP, or GIF · up to 20 MB</span>
+                <span class="browse-chip" aria-hidden="true">Choose image</span>
+                <em id="uploadName"></em>
+              </span>
+              <i data-lucide="image-up" aria-hidden="true"></i>
+              <input class="visually-hidden" id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+            </label>
+          <div class="field" style="margin-top:12px"><label>Aspect ratio</label>
+              <div class="segmented" id="ratioMode">
+                <button class="active" type="button" data-ratio="free">Free</button>
+                <button type="button" data-ratio="1:1">1:1</button>
+                <button type="button" data-ratio="16:9">16:9</button>
+                <button type="button" data-ratio="4:3">4:3</button>
+                <button type="button" data-ratio="3:2">3:2</button>
+              </div></div>
+          <div class="field">
+              <label for="formatSelect">Output format</label>
+              <select id="formatSelect"></select>
+            </div>
+            <div class="field" id="qualityField">
+              <label for="qualityRange">Quality</label>
+              <div class="range-row">
+                <input id="qualityRange" type="range" min="10" max="100" value="92" />
+                <output class="range-value" id="qualityValue">92%</output>
+              </div>
+            </div>
+          <button class="primary-button" id="downloadBtn" type="button" style="margin-top:16px">
+            <i data-lucide="download"></i> Download
+          </button>
+        </section>
+      </aside>
+      <section class="panel">
+        <div class="panel-head"><div><h2>Preview</h2><p>Live result before download.</p></div></div>
+        <div class="preview-wrap section">
+          <div class="tool-workspace">
+            <div class="tool-preview-wrap" id="previewWrap">
+              <canvas id="previewCanvas" class="tool-preview-canvas"></canvas>
+            </div>
+          </div>
+          <p class="tool-meta" id="metaInfo">Upload an image to begin.</p>
+        </div>
+      </section>
+    </div>
+    <div class="seo-content"><section class="seo-section" aria-label="How it works">
+      <h2>How it works</h2>
+      <ol>
+        <li>Upload an image to the crop tool.</li>
+        <li>Choose an aspect ratio or freeform mode and adjust the crop region.</li>
+        <li>Download the cropped image in your chosen format.</li>
+      </ol>
+    </section><section class="seo-section" aria-label="FAQ">
+      <h2>Frequently asked questions</h2>
+      <details class="seo-faq-item">
+      <summary>What aspect ratios are supported?</summary>
+      <p>Free, 1:1, 16:9, 4:3, and 3:2 presets are available, plus freeform cropping.</p>
+    </details>
+      <details class="seo-faq-item">
+      <summary>Does cropping upload my photo?</summary>
+      <p>No. Cropping is done locally in your browser.</p>
+    </details>
+    </section></div>
+    <footer class="footer">
+      <span class="privacy"><i data-lucide="shield-check"></i> Private by design — image processing happens locally.</span>
+      <span>Img2Favicon · built for modern web projects</span>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="check-circle-2"></i><span id="toastText">Done</span></div>
+</body>
+</html>

@@ -1,0 +1,3 @@
+function e(e){return JSON.stringify({name:e.name,short_name:e.shortName,icons:[{src:e.icon192,sizes:`192x192`,type:`image/png`},{src:e.icon512,sizes:`512x512`,type:`image/png`,purpose:`any maskable`}],theme_color:e.themeColor,background_color:e.backgroundColor,display:e.display},null,2)+`
+`}function t(t,n){return e({name:`Your Website`,shortName:`Website`,themeColor:t,backgroundColor:n??`#ffffff`,display:`standalone`,icon192:`/android-chrome-192.png`,icon512:`/android-chrome-512.png`})}export{e as n,t};
+//# sourceMappingURL=manifest-BNI2UUAI.js.map

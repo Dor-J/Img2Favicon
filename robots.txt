@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dor-j.github.io/Img2Favicon/sitemap.xml

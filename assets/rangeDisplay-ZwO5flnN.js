@@ -1,0 +1,2 @@
+function e(e,t,n=``){t.textContent=`${e.value}${n}`;let r=Number(e.min||0),i=Number(e.max||100),a=(Number(e.value)-r)/(i-r)*100;e.style.setProperty(`--range-progress`,`${a}%`)}export{e as t};
+//# sourceMappingURL=rangeDisplay-ZwO5flnN.js.map

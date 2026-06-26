@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'self' blob: data:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self' blob:; worker-src 'none'" />
+  <meta name="description" content="Build sprite sheets from multiple frames with CSS background-position output. Free browser tool." />
+  <title>Sprite sheet builder — Img2Favicon</title>
+  <link rel="canonical" href="https://dor-j.github.io/Img2Favicon/tools/sprite-sheet/index.html" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="sprite sheet generator, css sprites, animation frames, sprite png" />
+  <meta property="og:title" content="Sprite sheet builder — Img2Favicon" />
+  <meta property="og:description" content="Build sprite sheets from multiple frames with CSS background-position output. Free browser tool." />
+  <meta property="og:url" content="https://dor-j.github.io/Img2Favicon/tools/sprite-sheet/index.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <meta property="og:site_name" content="Img2Favicon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sprite sheet builder — Img2Favicon" />
+  <meta name="twitter:description" content="Build sprite sheets from multiple frames with CSS background-position output. Free browser tool." />
+  <meta name="twitter:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Sprite sheet builder","description":"Build sprite sheets from multiple frames with CSS background-position output. Free browser tool.","url":"https://dor-j.github.io/Img2Favicon/tools/sprite-sheet/index.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it generate CSS?","acceptedAnswer":{"@type":"Answer","text":"Yes. Optional CSS rules with background-position for each frame."}}]}]</script>
+  <script type="module" crossorigin src="../../assets/sprite-sheet-BVEZPNid.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/rolldown-runtime-BHe-jwch.js">
+  <link rel="modulepreload" crossorigin href="../../assets/shared-DpybSr3x.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toast-lv42anyN.js">
+  <link rel="modulepreload" crossorigin href="../../assets/jszip.min-BxJIQv2F.js">
+  <link rel="modulepreload" crossorigin href="../../assets/encode-DsbjXOzB.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toolHelpers-CQsi2vg5.js">
+  <link rel="modulepreload" crossorigin href="../../assets/dimensions-Cw5k5CKO.js">
+  <link rel="modulepreload" crossorigin href="../../assets/multiFileDrop-BNJR6BkJ.js">
+  <link rel="stylesheet" crossorigin href="../../assets/shared-63VV_njx.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="shell tool-page">
+    <section class="hero">
+      <span class="eyebrow">Runs entirely in your browser</span>
+      <h1>Sprite sheet builder</h1>
+      <p>Pack animation frames into one PNG with optional CSS.</p>
+    </section>
+    <div class="tool-layout">
+      <aside class="panel tool-controls">
+        <div class="panel-head"><div><h2>Controls</h2></div></div>
+        <section class="section">
+          
+          <div class="section-title"><span>Source files</span><button id="clearFiles" type="button">Clear all</button></div>
+          <label class="dropzone" id="dropzone" for="fileInput">
+            <span class="upload-copy">
+              <strong id="uploadTitle">Drop images here or browse</strong>
+              <span id="uploadSub">PNG, JPG, WebP, or GIF · multiple files</span>
+              <span class="browse-chip" aria-hidden="true">Choose files</span>
+            </span>
+            <i data-lucide="images" aria-hidden="true"></i>
+            <input class="visually-hidden" id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" multiple />
+          </label>
+          <ul class="file-list" id="fileList"></ul>
+          <div class="field-grid two" style="margin-top:12px">
+              <div class="field"><label for="colsInput">Columns</label><input class="input" id="colsInput" type="number" min="1" value="4" /></div>
+              <div class="field"><label for="padInput">Padding</label><input class="input" id="padInput" type="number" min="0" value="0" /></div>
+            </div>
+            <div class="field" style="margin-top:12px"><label><input id="uniformCells" type="checkbox" checked /> Uniform cell size</label></div>
+            <button class="minor-button" id="copyCssBtn" type="button" style="margin-top:12px"><i data-lucide="copy"></i> Copy CSS</button>
+          
+          <button class="primary-button" id="downloadBtn" type="button" style="margin-top:16px">
+            <i data-lucide="download"></i> Download ZIP
+          </button>
+        </section>
+      </aside>
+      <section class="panel">
+        <div class="panel-head"><div><h2>Preview</h2><p>Live result before download.</p></div></div>
+        <div class="preview-wrap section">
+          <div class="tool-workspace">
+            <div class="tool-preview-wrap" id="previewWrap">
+              <canvas id="previewCanvas" class="tool-preview-canvas"></canvas>
+            </div>
+          </div>
+          <p class="tool-meta" id="metaInfo">Add images to begin.</p>
+        </div>
+      </section>
+    </div>
+    <div class="seo-content"><section class="seo-section" aria-label="How it works">
+      <h2>How it works</h2>
+      <ol>
+        <li>Upload ordered frame images.</li>
+        <li>Set grid columns and padding.</li>
+        <li>Download PNG and copy CSS.</li>
+      </ol>
+    </section><section class="seo-section" aria-label="FAQ">
+      <h2>Frequently asked questions</h2>
+      <details class="seo-faq-item">
+      <summary>Does it generate CSS?</summary>
+      <p>Yes. Optional CSS rules with background-position for each frame.</p>
+    </details>
+    </section></div>
+    <footer class="footer">
+      <span class="privacy"><i data-lucide="shield-check"></i> Private by design — image processing happens locally.</span>
+      <span>Img2Favicon · built for modern web projects</span>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="check-circle-2"></i><span id="toastText">Done</span></div>
+</body>
+</html>

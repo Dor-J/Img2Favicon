@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'self' blob: data:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self' blob:; worker-src 'none'" />
+  <meta name="description" content="Remove EXIF and image metadata locally in your browser. Strip GPS, camera info, and timestamps — no upload." />
+  <title>Strip metadata — Img2Favicon</title>
+  <link rel="canonical" href="https://dor-j.github.io/Img2Favicon/tools/strip-metadata/index.html" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="remove exif, strip metadata, remove image metadata, privacy photo tool" />
+  <meta property="og:title" content="Strip metadata — Img2Favicon" />
+  <meta property="og:description" content="Remove EXIF and image metadata locally in your browser. Strip GPS, camera info, and timestamps — no upload." />
+  <meta property="og:url" content="https://dor-j.github.io/Img2Favicon/tools/strip-metadata/index.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <meta property="og:site_name" content="Img2Favicon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Strip metadata — Img2Favicon" />
+  <meta name="twitter:description" content="Remove EXIF and image metadata locally in your browser. Strip GPS, camera info, and timestamps — no upload." />
+  <meta name="twitter:image" content="https://dor-j.github.io/Img2Favicon/og-image.png" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Strip metadata","description":"Remove EXIF and image metadata locally in your browser. Strip GPS, camera info, and timestamps — no upload.","url":"https://dor-j.github.io/Img2Favicon/tools/strip-metadata/index.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What EXIF data is removed?","acceptedAnswer":{"@type":"Answer","text":"Re-encoding removes camera GPS, device info, timestamps, and other embedded metadata from the export."}},{"@type":"Question","name":"Does stripping metadata upload my photo?","acceptedAnswer":{"@type":"Answer","text":"No. Metadata is removed by re-encoding the image entirely in your browser."}},{"@type":"Question","name":"Why strip image metadata?","acceptedAnswer":{"@type":"Answer","text":"Metadata can include location and device details. Stripping it protects privacy before sharing photos."}}]}]</script>
+  <script type="module" crossorigin src="../../assets/strip-metadata-AILIvpid.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/shared-DpybSr3x.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toast-lv42anyN.js">
+  <link rel="modulepreload" crossorigin href="../../assets/encode-DsbjXOzB.js">
+  <link rel="modulepreload" crossorigin href="../../assets/rangeDisplay-ZwO5flnN.js">
+  <link rel="modulepreload" crossorigin href="../../assets/fileDrop-CsQ11loF.js">
+  <link rel="modulepreload" crossorigin href="../../assets/loadImage-5rLF3r1U.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toolHelpers-CQsi2vg5.js">
+  <link rel="modulepreload" crossorigin href="../../assets/toolBase-9qVME59M.js">
+  <link rel="modulepreload" crossorigin href="../../assets/dimensions-Cw5k5CKO.js">
+  <link rel="stylesheet" crossorigin href="../../assets/shared-63VV_njx.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="shell tool-page">
+    <section class="hero">
+      <span class="eyebrow">Runs entirely in your browser</span>
+      <h1>Strip metadata</h1>
+      <p>Remove EXIF and metadata by re-encoding locally in your browser.</p>
+    </section>
+    <div class="tool-layout">
+      <aside class="panel tool-controls">
+        <div class="panel-head"><div><h2>Controls</h2></div></div>
+        <section class="section">
+          <p class="tool-note">Your camera GPS, device info, and timestamps are not included in the export.</p>
+          <div class="section-title"><span>Source image</span><button id="clearImage" type="button">Clear</button></div>
+          <label class="dropzone" id="dropzone" for="imageInput">
+              <span class="upload-thumb"><img id="uploadThumb" alt="" /></span>
+              <span class="upload-copy">
+                <strong id="uploadTitle">Drop an image here or browse</strong>
+                <span id="uploadSub">PNG, JPG, WebP, or GIF · up to 20 MB</span>
+                <span class="browse-chip" aria-hidden="true">Choose image</span>
+                <em id="uploadName"></em>
+              </span>
+              <i data-lucide="image-up" aria-hidden="true"></i>
+              <input class="visually-hidden" id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+            </label>
+          
+          <div class="field">
+              <label for="formatSelect">Output format</label>
+              <select id="formatSelect"></select>
+            </div>
+            <div class="field" id="qualityField">
+              <label for="qualityRange">Quality</label>
+              <div class="range-row">
+                <input id="qualityRange" type="range" min="10" max="100" value="92" />
+                <output class="range-value" id="qualityValue">92%</output>
+              </div>
+            </div>
+          <button class="primary-button" id="downloadBtn" type="button" style="margin-top:16px">
+            <i data-lucide="download"></i> Download
+          </button>
+        </section>
+      </aside>
+      <section class="panel">
+        <div class="panel-head"><div><h2>Preview</h2><p>Live result before download.</p></div></div>
+        <div class="preview-wrap section">
+          <div class="tool-workspace">
+            <div class="tool-preview-wrap" id="previewWrap">
+              <canvas id="previewCanvas" class="tool-preview-canvas"></canvas>
+            </div>
+          </div>
+          <p class="tool-meta" id="metaInfo">Upload an image to begin.</p>
+        </div>
+      </section>
+    </div>
+    <div class="seo-content"><section class="seo-section" aria-label="How it works">
+      <h2>How it works</h2>
+      <ol>
+        <li>Upload a photo that may contain EXIF or other metadata.</li>
+        <li>Choose output format — the tool re-encodes locally without metadata.</li>
+        <li>Download a clean image file.</li>
+      </ol>
+    </section><section class="seo-section" aria-label="FAQ">
+      <h2>Frequently asked questions</h2>
+      <details class="seo-faq-item">
+      <summary>What EXIF data is removed?</summary>
+      <p>Re-encoding removes camera GPS, device info, timestamps, and other embedded metadata from the export.</p>
+    </details>
+      <details class="seo-faq-item">
+      <summary>Does stripping metadata upload my photo?</summary>
+      <p>No. Metadata is removed by re-encoding the image entirely in your browser.</p>
+    </details>
+      <details class="seo-faq-item">
+      <summary>Why strip image metadata?</summary>
+      <p>Metadata can include location and device details. Stripping it protects privacy before sharing photos.</p>
+    </details>
+    </section></div>
+    <footer class="footer">
+      <span class="privacy"><i data-lucide="shield-check"></i> Private by design — image processing happens locally.</span>
+      <span>Img2Favicon · built for modern web projects</span>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="check-circle-2"></i><span id="toastText">Done</span></div>
+</body>
+</html>

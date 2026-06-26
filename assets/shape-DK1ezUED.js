@@ -1,0 +1,2 @@
+function e(e,n,r,i=.19){if(r===`circle`){e.beginPath(),e.arc(n/2,n/2,n/2,0,Math.PI*2);return}if(r===`square`){e.beginPath(),e.rect(0,0,n,n);return}if(r===`squircle`){t(e,n);return}let a=Math.round(n*i);e.beginPath(),e.roundRect(0,0,n,n,a)}function t(e,t){let n=t/2,r=t/2,i=t/2,a=t/2;e.beginPath();for(let t=0;t<=Math.PI*2;t+=Math.PI/64){let o=Math.cos(t),s=Math.sin(t),c=n+i*Math.sign(o)*Math.abs(o)**(2/4),l=r+a*Math.sign(s)*Math.abs(s)**(2/4);t===0?e.moveTo(c,l):e.lineTo(c,l)}e.closePath()}export{e as t};
+//# sourceMappingURL=shape-DK1ezUED.js.map

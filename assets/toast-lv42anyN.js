@@ -1,0 +1,2 @@
+var e;function t(t){let n=document.querySelector(`#toast`),r=document.querySelector(`#toastText`);!n||!r||(r.textContent=t,n.classList.add(`show`),window.clearTimeout(e),e=window.setTimeout(()=>n.classList.remove(`show`),2600))}export{t};
+//# sourceMappingURL=toast-lv42anyN.js.map

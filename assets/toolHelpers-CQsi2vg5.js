@@ -1,0 +1,2 @@
+import{t as e}from"./toast-lv42anyN.js";import{a as t,c as n,o as r,t as i}from"./encode-DsbjXOzB.js";var a=(e,t=document)=>t.querySelector(e);async function o(n,a,o,s){await t(await r(n,{format:o,quality:s/100}),i(a.file.name,o)),e(`Image downloaded.`)}function s(e,t){e.textContent=t.filter(Boolean).join(` · `)}function c(e,t,r,i){let a=[`Output: ${e} × ${t} px`];return r&&a.push(n(r.size)),i&&a.push(i),a}function l(e){return[`Original: ${e.width} × ${e.height} px`,n(e.file.size)]}export{s as a,c as i,o as n,l as r,a as t};
+//# sourceMappingURL=toolHelpers-CQsi2vg5.js.map
